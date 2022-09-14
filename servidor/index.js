@@ -33,11 +33,11 @@ app.get('/autenticar', async function(req, res){
   res.render('autenticar');
 })
 app.get('/listar', async function(req, res){
-  const usuario = await usuario.create(req,res)
+  const usuarios = await usuario.create(req,res)
   res.render('usuarios');
 })
 app.get('/cadastro', async function(req, res){
-  res.render('autenticar');
+  res.render('cadastro');
 })
 app.get('/cadastro', async function(req, res){
   const usuario = await usuario.create(req,body)
