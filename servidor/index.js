@@ -25,11 +25,23 @@ app.use(
     secret: process.env.SECRET,
     algorithms: ["HS256"],
     getToken: req => req.cookies.token
+    //nao precisa ser autenticada
   }).unless({ path: ["/sobre","/autenticar", "/logar", "/deslogar"] })
 );
 
 app.get('/autenticar', async function(req, res){
   res.render('autenticar');
+})
+app.get('/listar', async function(req, res){
+  const usuario = await usuario.create(req,res)
+  res.render('usuarios');
+})
+app.get('/cadastro', async function(req, res){
+  res.render('autenticar');
+})
+app.get('/cadastro', async function(req, res){
+  const usuario = await usuario.create(req,body)
+  res.json(usuario);
 })
 
 app.get('/', async function(req, res){
