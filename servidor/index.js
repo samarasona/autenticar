@@ -33,15 +33,16 @@ app.get('/autenticar', async function(req, res){
   res.render('autenticar');
 })
 app.get('/listar', async function(req, res){
-  const usuarios = await usuario.create(req,res)
-  res.render('usuarios');
+  const usuarios = await usuario.findAll()
+  res.render('listar', {usuarios});
 })
 app.get('/cadastro', async function(req, res){
   res.render('cadastro');
 })
-app.get('/cadastro', async function(req, res){
-  const usuario = await usuario.create(req,body)
-  res.json(usuario);
+app.post('/cadastro', async function(req, res){
+ const {usuario: user, senha, nome} = req.body
+  const usuarioo = await usuario.create({nome, usuario: user, senha})
+  res.json(usuarioo);
 })
 
 app.get('/', async function(req, res){
